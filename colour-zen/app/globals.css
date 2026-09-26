@@ -1,0 +1,264 @@
+@import "tailwindcss";
+
+.color {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.main {
+  position: relative;
+  isolation: isolate;
+  display: block;
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  transition: background-color 0.3s ease;
+}
+
+.footer {
+  position: absolute;
+  z-index: 2;
+  bottom: 20px;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+.hex-code {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  font: inherit;
+  transition: transform 0.15s ease;
+  cursor: pointer;
+}
+.hex-code:hover {
+  transform: scale(1.05);
+}
+.hex-code:active {
+  transform: scale(0.95);
+}
+
+.hex-code-item {
+  position: relative;
+}
+
+.hex-code-item:hover .saved-colour-tooltip,
+.hex-code-item:focus-within .saved-colour-tooltip {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, 0);
+}
+
+.hex-code-item .saved-colour-tooltip {
+  top: calc(100% + 4px);
+}
+
+.text-baseline {
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.color-title-enter {
+  animation: color-title-enter 120ms ease-out both;
+}
+
+@keyframes color-title-enter {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .color-title-enter {
+    animation: none;
+  }
+}
+
+.text {
+  font-size: 5em;
+}
+.small-text {
+  font-size: 1.5em;
+}
+.tiny-text {
+  font-size: 0.875em;
+}
+
+.text-dark {
+  color: #000;
+}
+
+.text-light {
+  color: #fff;
+}
+
+.refresh-button {
+  -webkit-appearance: none;
+  appearance: none;
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 40px;
+  padding: 0;
+  font: inherit;
+  background-color: rgba(255, 255, 255, 0.13);
+  border: 1px solid rgba(255, 255, 255, 0.31);
+  border-radius: 12px;
+  margin-top: 30px;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+.secondary-button {
+  border: 1px solid #00000050;
+}
+
+.primary-button {
+  border: 1px solid #ffffff50;
+}
+
+.refresh-button:hover {
+  transform: scale(1.02);
+}
+
+.refresh-button:active {
+  transform: scale(0.98);
+}
+
+.refresh-button-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+}
+
+/* Margins provide spacing in Safari versions without flexbox gap support. */
+.refresh-button-container > * + * {
+  margin-left: 10px;
+}
+
+.saved-colours-container {
+  position: absolute;
+  z-index: 2;
+  top: 35px;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  height: 40px;
+  width: 100%;
+}
+
+.saved-colours-container > * + * {
+  margin-left: 10px;
+}
+
+.saved-colour-item {
+  position: relative;
+  flex: 0 0 30px;
+  height: 30px;
+}
+
+.saved-colour {
+  display: block;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border: 1.5px solid rgba(255, 255, 255, 0.85);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+.saved-colour:hover {
+  transform: scale(1.1);
+}
+.saved-colour:active {
+  transform: scale(0.9);
+}
+
+.saved-colour-remove {
+  position: absolute;
+  z-index: 2;
+  top: -27px;
+  left: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  color: red;
+  font: inherit;
+  font-size: 24px;
+  line-height: 1;
+  text-shadow: 0 0 2px #fff;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.15s ease,
+    transform 0.15s ease;
+  transform: translateX(-50%);
+}
+
+.saved-colour-item:hover .saved-colour-remove,
+.saved-colour-item:focus-within .saved-colour-remove {
+  opacity: 1;
+  visibility: visible;
+}
+
+.saved-colour-remove:hover {
+  transform: translateX(-50%) scale(1.1);
+}
+
+@media (hover: none) {
+  .saved-colour-remove {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+.saved-colour-tooltip {
+  position: absolute;
+  z-index: 1;
+  top: calc(100% + 8px);
+  left: 50%;
+  width: max-content;
+  max-width: min(240px, 80vw);
+  padding: 6px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 8px;
+  background: rgba(20, 20, 20, 0.9);
+  color: #fff;
+  font-size: 0.875rem;
+  line-height: 1.3;
+  text-align: center;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transform: translate(-50%, -4px);
+  transition:
+    opacity 0.15s ease,
+    transform 0.15s ease,
+    visibility 0.15s ease;
+}
+
+.saved-colour-item:hover .saved-colour-tooltip,
+.saved-colour-item:focus-within .saved-colour-tooltip {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, 0);
+}
