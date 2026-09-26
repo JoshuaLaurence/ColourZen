@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "closest-match": "^1.3.3",
+    "color-name-list": "^14.51.0"
+  }
+}
